@@ -22,22 +22,34 @@
     <!-- Main Section -->
     <main class="w-[90%] max-w-[1440px] mx-auto my-[50px]">
 
-        <!-- 34-2 Display Phones Dynamically On Each Card -->
+        <!-- 34-3 Implement Search Functionality And Display Search Result -->
+
+        <!-- Search input -->
         <section>
-           <div id="phones_container" class="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2">
-            <div class="card w-96 bg-base-100 shadow-xl">
-                <figure class="px-10 pt-10">
-                    <img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes"
-                        class="rounded-xl" />
-                </figure>
-                <div class="card-body items-center text-center">
-                    <h2 class="card-title">Shoes!</h2>
-                    <p>If a dog chews shoes whose shoes does he choose?</p>
-                    <div class="card-actions">
-                        <button class="btn btn-primary">Buy Now</button>
-                    </div>
-                </div>
+            <div class="text-center">
+                <input id="search_flied" type="text" placeholder="Type here" class="input input-bordered input-info lg:w-[752px] md:w-full h-[64px] text-[20px]" />
+                <button onclick="handleSearch()" class="text-[20px] bg-[#0D6EFD] text-white h-[64px] lg:w-[150px] py-[17px] px-[38px] rounded-lg ml-0">Search</button>
             </div>
+        </section>
+
+        <!-- 34-2 Display Phones Dynamically On Each Card -->
+
+        <!-- Search Result -->
+        <section>
+           <div id="phones_container" class="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-2 justify-center">
+                <!-- <div class="card w-96 bg-base-100 shadow-xl">
+                    <figure class="px-10 pt-10">
+                        <img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes"
+                            class="rounded-xl" />
+                    </figure>
+                    <div class="card-body items-center text-center">
+                        <h2 class="card-title">Shoes!</h2>
+                        <p>If a dog chews shoes whose shoes does he choose?</p>
+                        <div class="card-actions">
+                            <button class="btn btn-primary">Buy Now</button>
+                        </div>
+                    </div>
+                </div> -->
            </div>
         </section>
 

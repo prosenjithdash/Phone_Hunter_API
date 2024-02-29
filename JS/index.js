@@ -3,10 +3,6 @@
 // // Load All Phone Data
 
 
-
-
-
-
 // // Load Data Way number : 01
 
 // // const loadPhoneDatas = () => {
@@ -109,12 +105,16 @@
 
 
 
+
+
+
+
 //  *********** Practice part **********
 
 // Load All Phones Data with async
 
-const loadPhones = async () => {
-    const res = await fetch('https://openapi.programming-hero.com/api/phones?search=iphone');
+const loadPhones = async (searchText) => {
+    const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`);
     const data = await res.json();
     const phones = data.data;
     displayPhones(phones);
@@ -133,12 +133,15 @@ const displayPhones = (phones) => {
     //1. get where you stay
     const phonesContainer = document.getElementById('phones_container')
 
+    // Clear phone container cards before adding new cards
+    phonesContainer.textContent = '';
+
     phones.forEach(phone => {
         console.log(phone)
 
         // 2. create div
         const phonesCard = document.createElement('div');
-        phonesCard.classList=`card w-96 bg-base-100 shadow-xl border-2 border-gray-200 my-[20px]`;
+        phonesCard.classList=`card w-96 bg-base-100  border-2 border-gray-200 my-[20px]`;
 
         // 3. set innerHTML
         phonesCard.innerHTML =
@@ -152,9 +155,10 @@ const displayPhones = (phones) => {
                         <h2 class="card-title">${phone.phone_name} </h2>
                         <p>${phone.slug}</p>
                         <div class="card-actions">
-                            <button class="btn btn-primary">Show Details</button>
+                            <button class="btn btn-primary mt-4">Show Details</button>
                         </div>
                     </div>
+
         `
 
         // 4. appendChild
@@ -165,4 +169,20 @@ const displayPhones = (phones) => {
     
 }
 
-loadPhones();
+
+//34-3 Implement Search Functionality And Display Search Result
+
+// handleSearch button
+
+const handleSearch = () => {
+    // console.log('Search phone')
+
+    // get input Filed id
+    const searchFlied = document.getElementById('search_flied');
+    // get input Filed value
+    const searchText = searchFlied.value;
+    // console.log(searchText)
+    loadPhones(searchText)
+}
+
+// loadPhones();
