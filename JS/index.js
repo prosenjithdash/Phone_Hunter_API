@@ -130,7 +130,7 @@ const displayPhones = (phones) => {
 
     // show single data with forEach cause hare not take return
 
-    //1. get where you stay
+    //1. get where we want stay data
     const phonesContainer = document.getElementById('phones_container')
 
     // Clear phone container cards before adding new cards
@@ -172,17 +172,18 @@ const displayPhones = (phones) => {
 
 //34-3 Implement Search Functionality And Display Search Result
 
-// handleSearch button
-
 const handleSearch = () => {
-    // console.log('Search phone')
+    // console.log('Search btn')
 
-    // get input Filed id
+    // get searchFlied with getElementById
     const searchFlied = document.getElementById('search_flied');
-    // get input Filed value
+
+    // get searchFlied value
     const searchText = searchFlied.value;
-    // console.log(searchText)
-    loadPhones(searchText)
+    // console.log(searchText);
+
+    // call loadPhones with searchText value
+    loadPhones(searchText);
 }
 
 // loadPhones();
