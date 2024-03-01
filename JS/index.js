@@ -159,7 +159,7 @@ const displayPhones = (phones , isShowAll) => {
 
 
     phones.forEach(phone => {
-        console.log(phone)
+        // console.log(phone)
 
         // 2. create div
         const phonesCard = document.createElement('div');
@@ -177,7 +177,7 @@ const displayPhones = (phones , isShowAll) => {
                         <h2 class="card-title">${phone.phone_name} </h2>
                         <p>${phone.slug}</p>
                         <div class="card-actions">
-                            <button class="btn btn-primary mt-4">Show Details</button>
+                            <button onclick="showDetails('${phone.slug}')" class="btn btn-primary mt-4">Show Details</button>
                         </div>
                     </div>
 
@@ -194,6 +194,22 @@ const displayPhones = (phones , isShowAll) => {
     // Hide loading spinner
     toggleLoadingSpinner(false)
     
+}
+
+
+// 34-7 Dynamic API Data Load For Phone Show Details Button with specepic id
+
+
+const showDetails = async (id) => {
+    console.log('Show Details', id)
+
+    // dynamically load single phone data
+
+    const res = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`)
+    const data = await res.json()
+    const phone = data.data;
+    console.log(phone)
+
 }
 
 
