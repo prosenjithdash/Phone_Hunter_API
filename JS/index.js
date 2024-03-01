@@ -113,18 +113,18 @@
 
 // Load All Phones Data with async
 
-const loadPhones = async (searchText) => {
+const loadPhones = async (searchText , isShowAll) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`);
     const data = await res.json();
     const phones = data.data;
-    displayPhones(phones);
+    displayPhones(phones , isShowAll);
     
 }
 
 
 // Display Phones Data with display Function
 
-const displayPhones = (phones) => {
+const displayPhones = (phones , isShowAll) => {
     console.log(phones);
 
 
@@ -142,7 +142,7 @@ const displayPhones = (phones) => {
     const showAllContainer = document.getElementById('show_all_container');
 
     // use condition for show button
-    if (phones.length > 9) {
+    if (phones.length > 9 && !isShowAll) {
         showAllContainer.classList.remove('hidden');
     }
     else {
@@ -150,8 +150,12 @@ const displayPhones = (phones) => {
 
     }
 
-    // show only first 9 data
-    phones = phones.slice(0, 9);
+    console.log('Is show all ', isShowAll)
+    
+    // show only first 9 data if not isShowall
+    if (!isShowAll) {
+        phones = phones.slice(0, 9);
+   }
 
 
     phones.forEach(phone => {
@@ -195,7 +199,7 @@ const displayPhones = (phones) => {
 
 //34-3 Implement Search Functionality And Display Search Result
 
-const handleSearch = () => {
+const handleSearch = (isShowAll) => {
     // console.log('Search btn')
 
     // call loading spinner
@@ -209,7 +213,7 @@ const handleSearch = () => {
     // console.log(searchText);
 
     // call loadPhones with searchText value
-    loadPhones(searchText);
+    loadPhones(searchText , isShowAll);
 }
 
 //  34-5 Show And Hide Loading Spinner While Loading API Data 
@@ -224,7 +228,14 @@ const toggleLoadingSpinner = (isLoading) => {
 
     }
     
-    }
+}
+    
+//34-6 (Optional) Implement Show All Button To Display All Data
+
+const handleShowAll = () => {
+    console.log('Show all')
+    handleSearch(true);
+}
 
 
 // loadPhones();
