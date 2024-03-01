@@ -136,17 +136,35 @@ const displayPhones = (phones) => {
     // Clear phone container cards before adding new cards
     phonesContainer.textContent = '';
 
+
+    //34-4 Show Conditional Show All Button
+
+    const showAllContainer = document.getElementById('show_all_container');
+
+    // use condition for show button
+    if (phones.length > 9) {
+        showAllContainer.classList.remove('hidden');
+    }
+    else {
+            showAllContainer.classList.add('hidden');
+
+    }
+
+    // show only first 9 data
+    phones = phones.slice(0, 9);
+
+
     phones.forEach(phone => {
         console.log(phone)
 
         // 2. create div
         const phonesCard = document.createElement('div');
-        phonesCard.classList=`card w-96 bg-base-100  border-2 border-gray-200 my-[20px]`;
+        phonesCard.classList = `card w-96 bg-base-100  border-2 border-gray-200 my-[20px]`;
 
         // 3. set innerHTML
         phonesCard.innerHTML =
             
-        `
+            `
             <figure class="px-10 pt-10">
                         <img src=${phone.image} alt="Shoes"
                             class="rounded-xl" />
@@ -165,7 +183,12 @@ const displayPhones = (phones) => {
 
         phonesContainer.appendChild(phonesCard)
 
-    })
+    });
+
+    //  34-5 Show And Hide Loading Spinner While Loading API Data 
+
+    // Hide loading spinner
+    toggleLoadingSpinner(false)
     
 }
 
@@ -174,6 +197,9 @@ const displayPhones = (phones) => {
 
 const handleSearch = () => {
     // console.log('Search btn')
+
+    // call loading spinner
+    toggleLoadingSpinner(true);
 
     // get searchFlied with getElementById
     const searchFlied = document.getElementById('search_flied');
@@ -185,5 +211,20 @@ const handleSearch = () => {
     // call loadPhones with searchText value
     loadPhones(searchText);
 }
+
+//  34-5 Show And Hide Loading Spinner While Loading API Data 
+    
+const toggleLoadingSpinner = (isLoading) => {
+    const loadingSpinner = document.getElementById('loading_spinner')
+        if (isLoading) {
+            loadingSpinner.classList.remove('hidden')
+        }
+        else {
+            loadingSpinner.classList.add('hidden')
+
+    }
+    
+    }
+
 
 // loadPhones();
