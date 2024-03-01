@@ -113,7 +113,7 @@
 
 // Load All Phones Data with async
 
-const loadPhones = async (searchText , isShowAll) => {
+const loadPhones = async (searchText='11' , isShowAll) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`);
     const data = await res.json();
     const phones = data.data;
@@ -125,7 +125,7 @@ const loadPhones = async (searchText , isShowAll) => {
 // Display Phones Data with display Function
 
 const displayPhones = (phones , isShowAll) => {
-    console.log(phones);
+    // console.log(phones);
 
 
     // show single data with forEach cause hare not take return
@@ -150,7 +150,7 @@ const displayPhones = (phones , isShowAll) => {
 
     }
 
-    console.log('Is show all ', isShowAll)
+    // console.log('Is show all ', isShowAll)
     
     // show only first 9 data if not isShowall
     if (!isShowAll) {
@@ -208,8 +208,72 @@ const showDetails = async (id) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`)
     const data = await res.json()
     const phone = data.data;
-    console.log(phone)
+    // console.log(phone)
 
+    displayShowDetails(phone)
+
+}
+
+//34-8 Display Show Details With Nested Object Data
+
+// Display ShowDetails
+
+const displayShowDetails = (phone) => {
+    
+    console.log(phone)
+    show_details_modal.showModal();
+
+    //1. get where we want stay data
+    const showDetailsContainer = document.getElementById('show_details_container');
+
+    // Clear phone container cards before adding new cards
+    showDetailsContainer.textContent = '';
+
+     // 2. create div
+        const showDetailsCard = document.createElement('div');
+    showDetailsCard.classList = `card w-96 bg-base-100  border-gray-200 my-[20px] ml-[40px]`;
+    
+    // showDetailsCard.innerHTML = `
+    //  <h2>${phone.phone_name}</h2>
+    // `
+     // 3. set innerHTML
+        showDetailsCard.innerHTML =
+            
+            `
+            <figure class="px-10 py-10 ">
+                        <img src=${phone.image} alt="Shoes"
+                            class="rounded-xl" />
+                    </figure>
+                    
+                    <div>
+
+                        <p class='text-[20px] font-bold mt-3'>${phone.name} </p>
+
+                        <p class='text-[#706F6F] text-[16px] mt-3'>${phone.slug}</p>
+
+                        <p class='mt-2'><span class='font-semibold'>Storage:</span> <span class='text-[#706F6F] text-[16px]'>${phone.mainFeatures.storage}</span></p>
+
+                        <p class='mt-2'><span class='font-semibold'>Display Size:</span> <span class='text-[#706F6F] text-[16px]'>${phone.mainFeatures.displaySize}</span></p>
+
+                        <p class='mt-2'><span class='font-semibold'>ChipSet:</span> <span class='text-[#706F6F] text-[16px]'>${phone.mainFeatures.chipSet}</span></p>
+
+                        <p class='mt-2'><span class='font-semibold'>Memory:</span> <span class='text-[#706F6F] text-[16px]'>${phone.mainFeatures.memory}</span></p>
+
+                        <p class='mt-2'><span class='font-semibold'>Slug:</span> <span class='text-[#706F6F] text-[16px]'>${phone.slug}</span></p>
+
+                        <p class='mt-2'><span class='font-semibold'>Release Date:</span> <span class='text-[#706F6F] text-[16px]'>${phone.releaseDate}</span></p>
+
+                        <p class='mt-2'><span class='font-semibold'>Brand:</span> <span class='text-[#706F6F] text-[16px]'>${phone.brand}</span></p>
+
+                        <p class='mt-2'><span class='font-semibold'>GPS:</span> <span class='text-[#706F6F] text-[16px]'>${phone.others.GPS}</span></p>
+
+                    </div>
+
+        `
+    
+    // 4. appendChild
+
+    showDetailsContainer.appendChild(showDetailsCard);
 }
 
 
@@ -254,4 +318,4 @@ const handleShowAll = () => {
 }
 
 
-// loadPhones();
+loadPhones();
