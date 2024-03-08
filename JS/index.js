@@ -231,7 +231,7 @@ const displayShowDetails = (phone) => {
 
      // 2. create div
         const showDetailsCard = document.createElement('div');
-    showDetailsCard.classList = `card w-96 bg-base-100  border-gray-200 my-[20px] ml-[40px]`;
+    showDetailsCard.classList = `card  bg-base-100  border-gray-200 my-[20px] ml-[40px]`;
     
     // showDetailsCard.innerHTML = `
     //  <h2>${phone.phone_name}</h2>
