@@ -163,7 +163,7 @@ const displayPhones = (phones , isShowAll) => {
 
         // 2. create div
         const phonesCard = document.createElement('div');
-        phonesCard.classList = `card w-96 bg-base-100  border-2 border-gray-200 my-[20px]`;
+        phonesCard.classList = `card  bg-base-100  border-2 border-gray-200 my-[20px]`;
 
         // 3. set innerHTML
         phonesCard.innerHTML =
